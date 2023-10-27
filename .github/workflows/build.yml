@@ -30,10 +30,10 @@ jobs:
       - name: Build APK
         run: |
           cd voucher_enquire
-          flutter build apk --split-per-abi --release
+          flutter build apk --release
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
           name: openimis-voucher-enquire-${{github.run_number}}-${{github.sha}}
-          path: voucher_enquire/build/app/outputs/apk/*.apk
+          path: voucher_enquire/build/app/outputs/flutter-apk/*.apk
