@@ -26,6 +26,26 @@ The required components for the development and deployment of this app are
 
 ### Installation
 
-To run this app in Android Studio
-- clone this repository
-- import the repository as Flutter project in Android Studio
+To run this app in Android Studio:
+- Clone this repository
+- Ensure Dart and Flutter plugins are enabled
+- Use the Import Project feature in Android Studio
+- Choose create project from existing sources
+- (optional) Set Flutter SDK path
+- Open `voucher_enquire.pubspec.yaml` file
+- Select `Pub get` option
+- Run main.dart using Android Emulator or a real device
+
+To run this app using command line tools:
+- Clone this repository
+- navigate to `voucher_enquire` module
+- run `flutter pub get` to fetch the dependencies
+- run `flutter devices` to show available devices (the second column is device_id)
+- run `flutter run -d <device_id>` to run the app on a device
+
+To create an apk file:
+- Clone this repository
+- navigate to `voucher_enquire` module
+- run `flutter pub get` to fetch the dependencies
+- run `flutter build apk --debug` or `flutter build apk --release` to build an apk
+- navigate to `build/app/outputs/flutter-apk` to find the apk
