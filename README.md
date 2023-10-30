@@ -1,16 +1,31 @@
-# voucher_enquire
+# openIMIS Voucher Enquire app
 
-A new Flutter project.
+Voucher Enquire app allows Inspectors to verify vouchers assigned to a specific Worker
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-A few resources to get you started if this is your first Flutter project:
+### Prerequisites
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter toolchain [link](https://docs.flutter.dev/get-started/install)
+- Android toolchain
+  - Recommended way of installing Android SDK and toolset is to use Android Studio [link](https://developer.android.com/studio/install)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To check if you environment is set up for development make sure flutter binary is available from PATH
+and run:
+
+```bash
+flutter doctor -v
+```
+
+The required components for the development and deployment of this app are 
+- "Flutter"
+- "Android toolchain"
+- "Network Resources"
+
+### Installation
+
+To run this app in Android Studio
+- clone this repository
+- import the repository as Flutter project in Android Studio
