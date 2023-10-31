@@ -4,22 +4,26 @@ Voucher Enquire app allows Inspectors to verify vouchers assigned to a specific 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the project up and running on your local machine for
+development and testing purposes.
 
 ### Prerequisites
 
 - Flutter toolchain [link](https://docs.flutter.dev/get-started/install)
 - Android toolchain
-  - Recommended way of installing Android SDK and toolset is to use Android Studio [link](https://developer.android.com/studio/install)
+    - Recommended way of installing Android SDK and toolset is to use Android
+      Studio [link](https://developer.android.com/studio/install)
 
-To check if you environment is set up for development make sure flutter binary is available from PATH
+To check if you environment is set up for development make sure flutter binary is available from
+PATH
 and run:
 
 ```bash
 flutter doctor -v
 ```
 
-The required components for the development and deployment of this app are 
+The required components for the development and deployment of this app are
+
 - "Flutter"
 - "Android toolchain"
 - "Network Resources"
@@ -27,6 +31,7 @@ The required components for the development and deployment of this app are
 ### Installation
 
 To run this app in Android Studio:
+
 - Clone this repository
 - Ensure Dart and Flutter plugins are enabled
 - Use the Import Project feature in Android Studio
@@ -37,6 +42,7 @@ To run this app in Android Studio:
 - Run main.dart using Android Emulator or a real device
 
 To run this app using command line tools:
+
 - Clone this repository
 - navigate to `voucher_enquire` module
 - run `flutter pub get` to fetch the dependencies
@@ -44,8 +50,21 @@ To run this app using command line tools:
 - run `flutter run -d <device_id>` to run the app on a device
 
 To create an apk file:
+
 - Clone this repository
 - navigate to `voucher_enquire` module
 - run `flutter pub get` to fetch the dependencies
 - run `flutter build apk --debug` or `flutter build apk --release` to build an apk
 - navigate to `build/app/outputs/flutter-apk` to find the apk
+
+### Code generation
+
+This project uses `build_runner` to generate boilerplate code for json serialization. This should
+be done only after a class with `@JsonSerializable()` annotation was added or modified. To run the
+code generation use:
+
+```Bash
+./build_runner.sh
+# or
+dart run build_runner build --delete-conflicting-outputs
+```
