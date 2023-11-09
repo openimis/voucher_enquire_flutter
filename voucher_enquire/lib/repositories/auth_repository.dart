@@ -15,7 +15,7 @@ class AuthRepository {
         <String, String>{"username": username, "password": password});
     if (result.data != null) {
       try {
-        return Result(result: JWTResponse.fromJson(result.data!['tokenAuth']));
+        return Result(data: JWTResponse.fromJson(result.data!['tokenAuth']));
       } on Exception catch (e) {
         return Result(error: e);
       }
@@ -31,7 +31,7 @@ class AuthRepository {
     if (result.data != null) {
       try {
         return Result(
-            result: JWTResponse.fromJson(result.data!['refreshToken']));
+            data: JWTResponse.fromJson(result.data!['refreshToken']));
       } on Exception catch (e) {
         return Result(error: e);
       }
