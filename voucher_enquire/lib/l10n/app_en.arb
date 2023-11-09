@@ -1,6 +1,34 @@
 {
-  "helloWorld": "Hello World!",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
+  "loginFormLabel": "Welcome to openIMIS",
+  "@loginFormLabel": {
+    "description": "The title above login form."
+  },
+  "usernameLabel": "Username",
+  "@usernameLabel": {
+    "description": "Label of the username field in login form."
+  },
+  "enterUsername": "Please enter username",
+  "@enterUsername": {
+    "description": "Validation message for missing username"
+  },
+  "passwordLabel": "Password",
+  "@passwordLabel": {
+    "description": "Label of the password field in login form."
+  },
+  "enterPassword": "Please enter username",
+  "@enterPassword": {
+    "description": "Validation message for missing password"
+  },
+  "confirmButtonLabel": "Confirm",
+  "@confirmButtonLabel": {
+    "description": "Label of the generic confirm button."
+  },
+  "logoutButtonLabel": "Log out",
+  "@logoutButtonLabel": {
+    "description": "Label of the logout button."
+  },
+  "loginFailed": "The password or the username you've entered is incorrect.",
+  "@loginFailed": {
+    "description": "Generic message after failed login attempt"
   }
 }
