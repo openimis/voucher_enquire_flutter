@@ -1,3 +1,5 @@
+import 'package:path_provider/path_provider.dart';
+
 class ConfigRepository {
   static const String _apiUrl = "http://imis-moldova.soldevelo.com/api/graphql";
 
@@ -9,4 +11,7 @@ class ConfigRepository {
   Future<String> get apiUrl async => _apiUrl;
 
   Future<Map<String, String>> get defaultHttpHeaders async => _defaultHeaders;
+
+  Future<String> get baseFilePath async =>
+      (await getApplicationDocumentsDirectory()).path;
 }

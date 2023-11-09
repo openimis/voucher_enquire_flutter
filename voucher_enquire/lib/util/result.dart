@@ -1,9 +1,10 @@
 class Result<T, E> {
-  T? result;
+  T? data;
   E? error;
 
-  Result({this.result, this.error});
+  Result({this.data, this.error});
 
-  bool get isOk => result != null;
+  bool get isOk => error == null;
+
   bool get isError => error != null;
 }
