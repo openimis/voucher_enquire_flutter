@@ -30,8 +30,7 @@ class AuthRepository {
         refreshTokenMutation, <String, String>{"refreshToken": refreshToken});
     if (result.data != null) {
       try {
-        return Result(
-            data: JWTResponse.fromJson(result.data!['refreshToken']));
+        return Result(data: JWTResponse.fromJson(result.data!['refreshToken']));
       } on Exception catch (e) {
         return Result(error: e);
       }

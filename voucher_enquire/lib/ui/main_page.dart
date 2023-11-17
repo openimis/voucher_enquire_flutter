@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:voucher_enquire/data/file_provider.dart';
+import 'package:voucher_enquire/repository/repository.dart';
 import 'package:voucher_enquire/ui/background.dart';
 import 'package:voucher_enquire/ui/login_form.dart';
 import 'package:voucher_enquire/ui/logout_bar.dart';
@@ -8,9 +9,6 @@ import 'package:voucher_enquire/ui/logout_bar.dart';
 import '../bloc/auth_bloc.dart';
 import '../data/api_provider.dart';
 import '../gql/client.dart';
-import '../repositories/auth_repository.dart';
-import '../repositories/config_repository.dart';
-import '../repositories/token_repository.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

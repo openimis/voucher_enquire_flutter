@@ -53,16 +53,17 @@ class Worker {
   final String firstName;
   final String lastName;
 
-  const Worker({required this.nationalId, required this.firstName, required this.lastName});
-
+  const Worker(
+      {required this.nationalId,
+      required this.firstName,
+      required this.lastName});
 
   @override
   String toString() {
     return 'Worker{nationalId: $nationalId, firstName: $firstName, lastName: $lastName}';
   }
 
-  factory Worker.fromJson(Map<String, dynamic> json) =>
-      _$WorkerFromJson(json);
+  factory Worker.fromJson(Map<String, dynamic> json) => _$WorkerFromJson(json);
 
   Map<String, dynamic> toJson() => _$WorkerToJson(this);
 }
@@ -73,7 +74,10 @@ class Voucher {
   final String dateIssued;
   final String dateAssigned;
 
-  Voucher({required this.employer, required this.dateIssued, required this.dateAssigned});
+  Voucher(
+      {required this.employer,
+      required this.dateIssued,
+      required this.dateAssigned});
 
   @override
   String toString() {
@@ -102,5 +106,4 @@ class VoucherResponse {
       _$VoucherResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$VoucherResponseToJson(this);
-
 }

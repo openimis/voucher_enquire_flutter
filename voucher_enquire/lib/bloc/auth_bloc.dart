@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:voucher_enquire/repository/repository.dart';
 
 import '../models/dto.dart';
-import '../repositories/auth_repository.dart';
-import '../repositories/token_repository.dart';
 import '../util/result.dart';
 
 sealed class AuthEvent {}
