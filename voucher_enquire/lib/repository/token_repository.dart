@@ -1,7 +1,7 @@
 import 'package:voucher_enquire/data/file_provider.dart';
 import 'package:path/path.dart' as path;
 
-import '../util/result.dart';
+import '../util/util.dart';
 
 class TokenRepository {
   final tokenFileName = path.join('auth', 'token.txt');
