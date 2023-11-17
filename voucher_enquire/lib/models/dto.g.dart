@@ -33,3 +33,43 @@ Map<String, dynamic> _$JWTResponseToJson(JWTResponse instance) =>
       'refreshToken': instance.refreshToken,
       'refreshExpiresIn': instance.refreshExpiresIn,
     };
+
+Worker _$WorkerFromJson(Map<String, dynamic> json) => Worker(
+      nationalId: json['nationalId'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+    );
+
+Map<String, dynamic> _$WorkerToJson(Worker instance) => <String, dynamic>{
+      'nationalId': instance.nationalId,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+    };
+
+Voucher _$VoucherFromJson(Map<String, dynamic> json) => Voucher(
+      employer: json['employer'] as String,
+      dateIssued: json['dateIssued'] as String,
+      dateAssigned: json['dateAssigned'] as String,
+    );
+
+Map<String, dynamic> _$VoucherToJson(Voucher instance) => <String, dynamic>{
+      'employer': instance.employer,
+      'dateIssued': instance.dateIssued,
+      'dateAssigned': instance.dateAssigned,
+    };
+
+VoucherResponse _$VoucherResponseFromJson(Map<String, dynamic> json) =>
+    VoucherResponse(
+      worker: json['worker'] == null
+          ? null
+          : Worker.fromJson(json['worker'] as Map<String, dynamic>),
+      voucher: json['voucher'] == null
+          ? null
+          : Voucher.fromJson(json['voucher'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$VoucherResponseToJson(VoucherResponse instance) =>
+    <String, dynamic>{
+      'worker': instance.worker,
+      'voucher': instance.voucher,
+    };
