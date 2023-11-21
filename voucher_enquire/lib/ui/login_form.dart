@@ -69,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
                 const SizedBox(height: 16),
                 Text(AppLocalizations.of(context).loginFailed,
                     style:
-                        textTheme.bodyMedium!.apply(color: colorScheme.onError))
+                        textTheme.bodyMedium!.apply(color: colorScheme.error))
               ],
               const SizedBox(height: 24),
               GenericFormConfirmButton(
