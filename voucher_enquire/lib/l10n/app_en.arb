@@ -5,7 +5,7 @@
   },
   "usernameLabel": "Username",
   "@usernameLabel": {
-    "description": "Label of the username field in login form."
+    "description": "Label of the username field"
   },
   "enterUsername": "Please enter username",
   "@enterUsername": {
@@ -13,7 +13,7 @@
   },
   "passwordLabel": "Password",
   "@passwordLabel": {
-    "description": "Label of the password field in login form."
+    "description": "Label of the password field"
   },
   "enterPassword": "Please enter username",
   "@enterPassword": {
@@ -30,5 +30,77 @@
   "loginFailed": "The password or the username you've entered is incorrect.",
   "@loginFailed": {
     "description": "Generic message after failed login attempt"
+  },
+  "voucherFormLabel": "Please insert National ID",
+  "@voucherFormLabel": {
+    "description": "The title above voucher form."
+  },
+  "nationalIdLabel": "National ID",
+  "@nationalIdLabel": {
+    "description": "Label of the national ID field"
+  },
+  "nationalIdGridLabel": "National ID:",
+  "@nationalIdGridLabel": {
+    "description": "Label of the national ID grid field"
+  },
+  "enterNationalId": "Please enter National ID",
+  "@enterNationalId": {
+    "description": "Validation message for missing national ID"
+  },
+  "invalidNationalId": "Invalid National ID",
+  "@invalidNationalId": {
+    "description": "Validation message for invalid national ID"
+  },
+  "firstNameGridLabel": "Name:",
+  "@firstNameGridLabel": {
+    "description": "Label of the first name grid field"
+  },
+  "lastNameGridLabel": "Surname:",
+  "@lastNameGridLabel": {
+    "description": "Label of the last name grid field"
+  },
+  "employerGridLabel": "Employer data:",
+  "@employerGridLabel": {
+    "description": "Label of the employer grid field"
+  },
+  "dateIssuedGridLabel": "Date issued:",
+  "@dateIssuedGridLabel": {
+    "description": "Label of the date issued grid field"
+  },
+  "dateAssignedGridLabel": "Assignment date:",
+  "@dateAssignedGridLabel": {
+    "description": "Label of the date issued grid field"
+  },
+  "voucherFetchFailed": "Failed to fetch voucher",
+  "@voucherFetchFailed": {
+    "description": "Generic message after failed voucher fetch attempt"
+  },
+  "workerInfoLabel": "Worker information",
+  "@workerInfoLabel": {
+    "description": "The title above worker information panel."
+  },
+  "voucherInfoLabel": "Voucher information",
+  "@voucherInfoLabel": {
+    "description": "The title above voucher information panel."
+  },
+  "activeLabel": "ACTIVE",
+  "@activeLabel": {
+    "description": "Label of an active voucher."
+  },
+  "inactiveLabel": "INACTIVE",
+  "@inactiveLabel": {
+    "description": "Label of an inactive voucher."
+  },
+  "workerNotExists": "Worker does not exists",
+  "@workerNotExists": {
+    "description": "Error after failed voucher fetch."
+  },
+  "noVouchers": "No vouchers to display",
+  "@noVouchers": {
+    "description": "Message to display when current worker has no vouchers active"
+  },
+  "backLabel": "Back",
+  "@backLabel": {
+    "description": "Label of the back button"
   }
 }

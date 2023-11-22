@@ -67,7 +67,9 @@ class GenericFormTextField extends StatelessWidget {
       decoration: InputDecoration(
           labelText: label,
           labelStyle: textTheme.bodySmall!.apply(color: colorScheme.onSurface),
-          contentPadding: const EdgeInsets.all(8)),
+          contentPadding: const EdgeInsets.all(8),
+          enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: colorScheme.onSurface))),
       style: textTheme.bodyMedium!.apply(color: colorScheme.onSurface),
       obscureText: obscureText,
       validator: validator,

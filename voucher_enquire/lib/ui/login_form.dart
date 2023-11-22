@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:voucher_enquire/bloc/auth_bloc.dart';
-
-import 'form.dart';
+import 'package:voucher_enquire/bloc/bloc.dart';
+import 'package:voucher_enquire/ui/ui_parts.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -47,7 +46,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
               const SizedBox(height: 32),
               Text(AppLocalizations.of(context).loginFormLabel,
-                  style: textTheme.headlineSmall!
+                  style: textTheme.headlineMedium!
                       .apply(color: colorScheme.onSurface)),
               const SizedBox(height: 32),
               GenericFormTextField(
@@ -66,14 +65,12 @@ class _LoginFormState extends State<LoginForm> {
                 onSaved: (value) => password = value,
                 obscureText: true,
               ),
-              ...(state.props['authFailed'] ?? false)
-                  ? [
-                      const SizedBox(height: 16),
-                      Text(AppLocalizations.of(context).loginFailed,
-                          style: textTheme.bodyMedium!
-                              .apply(color: colorScheme.error))
-                    ]
-                  : [],
+              if (state.props['authFailed'] ?? false) ...[
+                const SizedBox(height: 16),
+                Text(AppLocalizations.of(context).loginFailed,
+                    style:
+                        textTheme.bodyMedium!.apply(color: colorScheme.error))
+              ],
               const SizedBox(height: 24),
               GenericFormConfirmButton(
                 formKey: _formKey,

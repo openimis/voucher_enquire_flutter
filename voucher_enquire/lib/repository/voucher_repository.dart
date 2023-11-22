@@ -1,6 +1,6 @@
-import '../data/api_provider.dart';
-import '../models/dto.dart';
-import '../util/result.dart';
+import 'package:voucher_enquire/data/api_provider.dart';
+import 'package:voucher_enquire/models/models.dart';
+import 'package:voucher_enquire/util/util.dart';
 
 class VoucherRepository {
   final ApiProvider _apiProvider;
