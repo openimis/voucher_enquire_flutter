@@ -1,7 +1,7 @@
 import 'package:voucher_enquire/data/api_provider.dart';
 import 'package:voucher_enquire/gql/mutations.dart';
-import 'package:voucher_enquire/models/dto.dart';
-import 'package:voucher_enquire/util/result.dart';
+import 'package:voucher_enquire/models/models.dart';
+import 'package:voucher_enquire/util/util.dart';
 
 class AuthRepository {
   final ApiProvider _apiProvider;
@@ -30,8 +30,7 @@ class AuthRepository {
         refreshTokenMutation, <String, String>{"refreshToken": refreshToken});
     if (result.data != null) {
       try {
-        return Result(
-            data: JWTResponse.fromJson(result.data!['refreshToken']));
+        return Result(data: JWTResponse.fromJson(result.data!['refreshToken']));
       } on Exception catch (e) {
         return Result(error: e);
       }

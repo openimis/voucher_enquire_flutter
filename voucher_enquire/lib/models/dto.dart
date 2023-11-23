@@ -46,3 +46,64 @@ class JWTResponse {
 
   Map<String, dynamic> toJson() => _$JWTResponseToJson(this);
 }
+
+@JsonSerializable()
+class Worker {
+  final String nationalId;
+  final String firstName;
+  final String lastName;
+
+  const Worker(
+      {required this.nationalId,
+      required this.firstName,
+      required this.lastName});
+
+  @override
+  String toString() {
+    return 'Worker{nationalId: $nationalId, firstName: $firstName, lastName: $lastName}';
+  }
+
+  factory Worker.fromJson(Map<String, dynamic> json) => _$WorkerFromJson(json);
+
+  Map<String, dynamic> toJson() => _$WorkerToJson(this);
+}
+
+@JsonSerializable()
+class Voucher {
+  final String employer;
+  final String dateIssued;
+  final String dateAssigned;
+
+  Voucher(
+      {required this.employer,
+      required this.dateIssued,
+      required this.dateAssigned});
+
+  @override
+  String toString() {
+    return 'Voucher{employer: $employer, dateIssued: $dateIssued, dateAssigned: $dateAssigned}';
+  }
+
+  factory Voucher.fromJson(Map<String, dynamic> json) =>
+      _$VoucherFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VoucherToJson(this);
+}
+
+@JsonSerializable()
+class VoucherResponse {
+  final Worker? worker;
+  final Voucher? voucher;
+
+  VoucherResponse({this.worker, this.voucher});
+
+  @override
+  String toString() {
+    return 'VoucherResponse{worker: $worker, voucher: $voucher}';
+  }
+
+  factory VoucherResponse.fromJson(Map<String, dynamic> json) =>
+      _$VoucherResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VoucherResponseToJson(this);
+}
