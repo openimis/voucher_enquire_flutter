@@ -6,7 +6,7 @@ GraphQLClient buildGqlClient(
     String? token}) {
   Link link = HttpLink(endpoint, defaultHeaders: headers);
   if (token != null) {
-    link.concat(AuthLink(getToken: () async => 'Bearer $token'));
+    link = AuthLink(getToken: () async => 'Bearer $token').concat(link);
   }
 
   return GraphQLClient(

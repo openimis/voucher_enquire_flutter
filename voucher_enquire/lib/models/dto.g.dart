@@ -35,28 +35,51 @@ Map<String, dynamic> _$JWTResponseToJson(JWTResponse instance) =>
     };
 
 Worker _$WorkerFromJson(Map<String, dynamic> json) => Worker(
-      nationalId: json['nationalId'] as String,
-      firstName: json['firstName'] as String,
-      lastName: json['lastName'] as String,
+      nationalId: json['chfId'] as String,
+      firstName: json['otherNames'] as String?,
+      lastName: json['lastName'] as String?,
     );
 
 Map<String, dynamic> _$WorkerToJson(Worker instance) => <String, dynamic>{
-      'nationalId': instance.nationalId,
-      'firstName': instance.firstName,
+      'chfId': instance.nationalId,
+      'otherNames': instance.firstName,
       'lastName': instance.lastName,
     };
 
+Employer _$EmployerFromJson(Map<String, dynamic> json) => Employer(
+      code: json['code'] as String?,
+      name: json['tradeName'] as String,
+    );
+
+Map<String, dynamic> _$EmployerToJson(Employer instance) => <String, dynamic>{
+      'code': instance.code,
+      'tradeName': instance.name,
+    };
+
 Voucher _$VoucherFromJson(Map<String, dynamic> json) => Voucher(
-      employer: json['employer'] as String,
-      dateIssued: json['dateIssued'] as String,
-      dateAssigned: json['dateAssigned'] as String,
+      employer: Employer.fromJson(json['policyholder'] as Map<String, dynamic>),
+      worker: Worker.fromJson(json['insuree'] as Map<String, dynamic>),
+      dateIssued: json['dateUpdatedAsDate'] as String,
+      dateAssigned: json['assignedDate'] as String,
+      status: $enumDecode(_$VoucherBusinessStatusEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$VoucherToJson(Voucher instance) => <String, dynamic>{
-      'employer': instance.employer,
-      'dateIssued': instance.dateIssued,
-      'dateAssigned': instance.dateAssigned,
+      'policyholder': instance.employer,
+      'insuree': instance.worker,
+      'dateUpdatedAsDate': instance.dateIssued,
+      'assignedDate': instance.dateAssigned,
+      'status': _$VoucherBusinessStatusEnumMap[instance.status]!,
     };
+
+const _$VoucherBusinessStatusEnumMap = {
+  VoucherBusinessStatus.awaitingPayment: 'AWAITING_PAYMENT',
+  VoucherBusinessStatus.unassigned: 'UNASSIGNED',
+  VoucherBusinessStatus.assigned: 'ASSIGNED',
+  VoucherBusinessStatus.expired: 'EXPIRED',
+  VoucherBusinessStatus.canceled: 'CANCELED',
+  VoucherBusinessStatus.closed: 'CLOSED',
+};
 
 VoucherResponse _$VoucherResponseFromJson(Map<String, dynamic> json) =>
     VoucherResponse(

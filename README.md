@@ -18,7 +18,7 @@ To check if you environment is set up for development make sure flutter binary i
 PATH
 and run:
 
-```bash
+```Bash
 flutter doctor -v
 ```
 
@@ -37,7 +37,7 @@ To run this app in Android Studio:
 - Use the Import Project feature in Android Studio
 - Choose create project from existing sources
 - (optional) Set Flutter SDK path
-- Open `voucher_enquire.pubspec.yaml` file
+- Open `voucher_enquire/pubspec.yaml` file
 - Select `Pub get` option
 - Run main.dart using Android Emulator or a real device
 

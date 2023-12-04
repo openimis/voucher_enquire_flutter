@@ -49,14 +49,14 @@ class JWTResponse {
 
 @JsonSerializable()
 class Worker {
+  @JsonKey(name: "chfId")
   final String nationalId;
-  final String firstName;
-  final String lastName;
+  @JsonKey(name: "otherNames")
+  final String? firstName;
+  @JsonKey(name: "lastName")
+  final String? lastName;
 
-  const Worker(
-      {required this.nationalId,
-      required this.firstName,
-      required this.lastName});
+  const Worker({required this.nationalId, this.firstName, this.lastName});
 
   @override
   String toString() {
@@ -68,20 +68,61 @@ class Worker {
   Map<String, dynamic> toJson() => _$WorkerToJson(this);
 }
 
-@JsonSerializable()
-class Voucher {
-  final String employer;
-  final String dateIssued;
-  final String dateAssigned;
+@JsonEnum(valueField: 'status')
+enum VoucherBusinessStatus {
+  awaitingPayment("AWAITING_PAYMENT"),
+  unassigned("UNASSIGNED"),
+  assigned("ASSIGNED"),
+  expired("EXPIRED"),
+  canceled("CANCELED"),
+  closed("CLOSED");
 
-  Voucher(
-      {required this.employer,
-      required this.dateIssued,
-      required this.dateAssigned});
+  final String status;
+
+  const VoucherBusinessStatus(this.status);
+}
+
+@JsonSerializable()
+class Employer {
+  final String? code;
+  @JsonKey(name: "tradeName")
+  final String name;
+
+  Employer({this.code, required this.name});
 
   @override
   String toString() {
-    return 'Voucher{employer: $employer, dateIssued: $dateIssued, dateAssigned: $dateAssigned}';
+    return 'Employer{code: $code, name: $name}';
+  }
+
+  factory Employer.fromJson(Map<String, dynamic> json) =>
+      _$EmployerFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EmployerToJson(this);
+}
+
+@JsonSerializable()
+class Voucher {
+  @JsonKey(name: "policyholder")
+  final Employer employer;
+  @JsonKey(name: "insuree")
+  final Worker worker;
+  @JsonKey(name: "dateUpdatedAsDate")
+  final String dateIssued;
+  @JsonKey(name: "assignedDate")
+  final String dateAssigned;
+  final VoucherBusinessStatus status;
+
+  Voucher(
+      {required this.employer,
+      required this.worker,
+      required this.dateIssued,
+      required this.dateAssigned,
+      required this.status});
+
+  @override
+  String toString() {
+    return 'Voucher{employer: $employer, worker: $worker, dateIssued: $dateIssued, dateAssigned: $dateAssigned, status: $status}';
   }
 
   factory Voucher.fromJson(Map<String, dynamic> json) =>

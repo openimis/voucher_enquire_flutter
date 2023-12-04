@@ -85,7 +85,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
 
     if (await _isTokenValid(result.data!)) {
-      emit(AuthStatus.authenticated.toState());
+      emit(AuthStatus.authenticated.toState(props: {"token": result.data!}));
     } else {
       await _clearToken();
       emit(AuthStatus.unauthenticated.toState());
