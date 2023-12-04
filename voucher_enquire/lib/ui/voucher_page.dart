@@ -47,12 +47,12 @@ class VoucherPage extends StatelessWidget {
               const SizedBox(height: 24),
               InfoRow(
                 label: text.firstNameGridLabel,
-                line: worker.firstName,
+                line: worker.firstName ?? "",
               ),
               const SizedBox(height: 24),
               InfoRow(
                 label: text.lastNameGridLabel,
-                line: worker.lastName,
+                line: worker.lastName ?? "",
               ),
             ],
           ),
@@ -88,7 +88,7 @@ class VoucherPage extends StatelessWidget {
                   children: [
                     InfoRow(
                       label: text.employerGridLabel,
-                      line: voucher.employer,
+                      line: voucher.employer.name,
                     ),
                     const SizedBox(height: 24),
                     InfoRow(

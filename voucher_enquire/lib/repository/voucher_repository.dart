@@ -1,4 +1,5 @@
 import 'package:voucher_enquire/data/api_provider.dart';
+import 'package:voucher_enquire/gql/queries.dart';
 import 'package:voucher_enquire/models/models.dart';
 import 'package:voucher_enquire/util/util.dart';
 
@@ -10,26 +11,28 @@ class VoucherRepository {
 
   Future<Result<VoucherResponse, Exception>> fetchVoucher(
       String nationalId) async {
-    // TODO integrate with openIMIS backend
-    // var result = await _apiProvider
-    //     .query(voucherQuery, <String, String>{"nationalId": nationalId});
-    var worker = !nationalId.startsWith("0")
-        ? Worker(
-            nationalId: nationalId,
-            firstName: "John",
-            lastName: "Doe",
-          )
-        : null;
+    var result = await _apiProvider
+        .query(workerEnquire, <String, String>{"nationalId": nationalId});
+    if (result.data != null) {
+      try {
+        Worker? worker;
+        Voucher? voucher;
 
-    var voucher = !nationalId.startsWith("0") && !nationalId.startsWith("1")
-        ? Voucher(
-            employer: "Company ltd.",
-            dateIssued: "1970-01-01",
-            dateAssigned: "1970-01-02",
-          )
-        : null;
+        if (result.data?['insurees']?['edges']?[0]?['node'] != null) {
+          worker =
+              Worker.fromJson(result.data!['insurees']['edges'][0]['node']);
+        }
+        if (result.data?['enquireWorker']?['edges']?[0]?['node'] != null) {
+          voucher = Voucher.fromJson(
+              result.data!['enquireWorker']['edges'][0]['node']);
+        }
 
-    return Future.delayed(const Duration(milliseconds: 500),
-        () => Result(data: VoucherResponse(worker: worker, voucher: voucher)));
+        return Result(data: VoucherResponse(worker: worker, voucher: voucher));
+      } on Exception catch (e) {
+        return Result(error: e);
+      }
+    } else {
+      return Result(error: result.exception!);
+    }
   }
 }

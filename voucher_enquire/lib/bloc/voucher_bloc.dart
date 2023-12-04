@@ -52,6 +52,16 @@ class VoucherBloc extends Bloc<VoucherEvent, VoucherState> {
     } else if (result.data!.worker == null) {
       emit(VoucherStatus.waiting.toState(props: {"error": "workerNotExists"}));
     } else {
+      var worker = result.data!.worker;
+      var voucher = result.data!.voucher;
+
+      //check if voucher assigned to this worker
+      voucher = voucher != null &&
+              worker!.nationalId == voucher.worker.nationalId &&
+              voucher.status == VoucherBusinessStatus.assigned
+          ? voucher
+          : null;
+
       emit(VoucherStatus.ready.toState(props: {
         "worker": result.data?.worker,
         "voucher": result.data?.voucher
