@@ -19,3 +19,12 @@ class ApiProvider {
     return await gqlClient.query(options);
   }
 }
+
+dynamic getFirstQueryResult(QueryResult result, String queryName) {
+  var entries = result.data?[queryName]?['edges'];
+  if (entries == null || entries.length == 0) {
+    return null;
+  } else {
+    return entries[0]['node'];
+  }
+}
