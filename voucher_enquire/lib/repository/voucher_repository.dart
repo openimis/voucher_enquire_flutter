@@ -18,13 +18,13 @@ class VoucherRepository {
         Worker? worker;
         Voucher? voucher;
 
-        if (result.data?['insurees']?['edges']?[0]?['node'] != null) {
-          worker =
-              Worker.fromJson(result.data!['insurees']['edges'][0]['node']);
+        var insureeResult = getFirstQueryResult(result, 'insurees');
+        if (insureeResult != null) {
+          worker = Worker.fromJson(insureeResult);
         }
-        if (result.data?['enquireWorker']?['edges']?[0]?['node'] != null) {
-          voucher = Voucher.fromJson(
-              result.data!['enquireWorker']['edges'][0]['node']);
+        var voucherResult = getFirstQueryResult(result, 'enquireWorker');
+        if (voucherResult != null) {
+          voucher = Voucher.fromJson(voucherResult);
         }
 
         return Result(data: VoucherResponse(worker: worker, voucher: voucher));
