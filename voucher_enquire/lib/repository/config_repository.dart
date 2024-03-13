@@ -1,7 +1,7 @@
 import 'package:path_provider/path_provider.dart';
 
 class ConfigRepository {
-  static const String _apiUrl = "http://imis-moldova.soldevelo.com/api/graphql";
+  static const String _apiUrl = "https://zilieri.gov.md/api/graphql";
   static const Map<String, String> _defaultHeaders = {
     "Accept": "application/json"
   };
