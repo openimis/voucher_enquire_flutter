@@ -8,8 +8,8 @@ part of 'dto.dart';
 
 JWTPayload _$JWTPayloadFromJson(Map<String, dynamic> json) => JWTPayload(
       username: json['username'] as String,
-      exp: json['exp'] as int,
-      origIat: json['origIat'] as int,
+      exp: (json['exp'] as num).toInt(),
+      origIat: (json['origIat'] as num).toInt(),
     );
 
 Map<String, dynamic> _$JWTPayloadToJson(JWTPayload instance) =>
@@ -21,29 +21,35 @@ Map<String, dynamic> _$JWTPayloadToJson(JWTPayload instance) =>
 
 JWTResponse _$JWTResponseFromJson(Map<String, dynamic> json) => JWTResponse(
       token: json['token'] as String,
-      payload: JWTPayload.fromJson(json['payload'] as Map<String, dynamic>),
-      refreshToken: json['refreshToken'] as String,
-      refreshExpiresIn: json['refreshExpiresIn'] as int,
     );
 
 Map<String, dynamic> _$JWTResponseToJson(JWTResponse instance) =>
     <String, dynamic>{
       'token': instance.token,
-      'payload': instance.payload,
-      'refreshToken': instance.refreshToken,
-      'refreshExpiresIn': instance.refreshExpiresIn,
+    };
+
+Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
+      photoBase64: json['photo'] as String?,
+    );
+
+Map<String, dynamic> _$PhotoToJson(Photo instance) => <String, dynamic>{
+      'photo': instance.photoBase64,
     };
 
 Worker _$WorkerFromJson(Map<String, dynamic> json) => Worker(
       nationalId: json['chfId'] as String,
       firstName: json['otherNames'] as String?,
       lastName: json['lastName'] as String?,
+      photo: json['photo'] == null
+          ? null
+          : Photo.fromJson(json['photo'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$WorkerToJson(Worker instance) => <String, dynamic>{
       'chfId': instance.nationalId,
       'otherNames': instance.firstName,
       'lastName': instance.lastName,
+      'photo': instance.photo,
     };
 
 Employer _$EmployerFromJson(Map<String, dynamic> json) => Employer(

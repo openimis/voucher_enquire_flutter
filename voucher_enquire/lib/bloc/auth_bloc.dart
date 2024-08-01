@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 import 'package:voucher_enquire/repository/repository.dart';
 import 'package:voucher_enquire/models/models.dart';
 import 'package:voucher_enquire/util/util.dart';
+
+var logger = Logger();
 
 sealed class AuthEvent {}
 
@@ -52,16 +55,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await (await authRepository).loginToken(event.username, event.password);
 
     if (response.isError) {
+      logger.e("${response.error}");
       emit(AuthStatus.unauthenticated.toState(props: {"authFailed": true}));
       return;
     }
 
     var token = response.data!.token;
     var resultToken = await (await tokenRepository).writeToken(token);
-    var resultRefreshToken = await (await tokenRepository)
-        .writeRefreshToken(response.data!.refreshToken);
 
-    if (resultToken.isOk && resultRefreshToken.isOk) {
+
+    if (resultToken.isOk) {
       emit(AuthStatus.authenticated.toState(props: {"token": token}));
     } else {
       emit(AuthStatus.unauthenticated.toState(props: {"authFailed": true}));
