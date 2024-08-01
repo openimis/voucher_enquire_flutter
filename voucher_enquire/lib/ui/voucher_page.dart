@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,20 +41,39 @@ class VoucherPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               InfoHeader(text: text.workerInfoLabel),
-              const SizedBox(height: 32),
-              InfoRow(
-                label: text.nationalIdGridLabel,
-                line: worker.nationalId,
-              ),
-              const SizedBox(height: 24),
-              InfoRow(
-                label: text.firstNameGridLabel,
-                line: worker.firstName ?? "",
-              ),
-              const SizedBox(height: 24),
-              InfoRow(
-                label: text.lastNameGridLabel,
-                line: worker.lastName ?? "",
+              Row(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      const SizedBox(height: 26),
+                      WorkerImage(workerPhoto: worker.photo),
+                    ],
+                  ),
+                  const SizedBox(width: 20),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 26),
+                      InfoRow(
+                        label: text.nationalIdGridLabel,
+                        line: worker.nationalId,
+                      ),
+                      const SizedBox(height: 20),
+                      InfoRow(
+                        label: text.firstNameGridLabel,
+                        line: worker.firstName ?? "",
+                      ),
+                      const SizedBox(height: 20),
+                      InfoRow(
+                        label: text.lastNameGridLabel,
+                        line: worker.lastName ?? "",
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
@@ -134,6 +155,29 @@ class InfoHeader extends StatelessWidget {
   }
 }
 
+class WorkerImage extends StatelessWidget {
+  final Photo? workerPhoto;
+
+  const WorkerImage({super.key, required this.workerPhoto});
+
+  @override
+  Widget build(BuildContext context) {
+    var workerPhotoBase64 = workerPhoto?.photoBase64;
+    var fit = BoxFit.contain;
+    var alignment = Alignment.center;
+
+    var image = workerPhotoBase64 != null
+        ? Image.memory(base64Decode(workerPhoto!.photoBase64!),
+            fit: fit, alignment: alignment)
+        : Image(image: const AssetImage("assets/blank-photo.png"), fit: fit, alignment: alignment);
+    return SizedBox(
+      width: 160,
+      height: 160,
+      child: image,
+    );
+  }
+}
+
 class ActiveStatusImage extends StatelessWidget {
   const ActiveStatusImage({super.key});
 
@@ -207,12 +251,11 @@ class InfoRow extends StatelessWidget {
     var textTheme = Theme.of(context).textTheme;
     var colorScheme = Theme.of(context).colorScheme;
 
-    return Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          width: 104,
           child: Text(
             label,
             style: textTheme.labelMedium!.apply(color: colorScheme.onSurface),
