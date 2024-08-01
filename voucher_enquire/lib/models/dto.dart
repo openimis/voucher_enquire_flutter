@@ -26,19 +26,13 @@ class JWTPayload {
 @JsonSerializable()
 class JWTResponse {
   final String token;
-  final JWTPayload payload;
-  final String refreshToken;
-  final int refreshExpiresIn;
 
   JWTResponse(
-      {required this.token,
-      required this.payload,
-      required this.refreshToken,
-      required this.refreshExpiresIn});
+      {required this.token});
 
   @override
   String toString() {
-    return 'JWTResponse{token: $token, payload: $payload, refreshToken: $refreshToken, refreshExpiresIn: $refreshExpiresIn}';
+    return 'JWTResponse{token: $token}';
   }
 
   factory JWTResponse.fromJson(Map<String, dynamic> json) =>
@@ -48,6 +42,24 @@ class JWTResponse {
 }
 
 @JsonSerializable()
+class Photo {
+  @JsonKey(name: "photo")
+  final String? photoBase64;
+
+  const Photo({required this.photoBase64});
+
+  @override
+  String toString() {
+    return 'Photo{photoBase64: $photoBase64}';
+  }
+
+  factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PhotoToJson(this);
+}
+
+
+@JsonSerializable()
 class Worker {
   @JsonKey(name: "chfId")
   final String nationalId;
@@ -55,12 +67,14 @@ class Worker {
   final String? firstName;
   @JsonKey(name: "lastName")
   final String? lastName;
+  @JsonKey(name: "photo")
+  final Photo? photo;
 
-  const Worker({required this.nationalId, this.firstName, this.lastName});
+  const Worker({required this.nationalId, this.firstName, this.lastName, this.photo});
 
   @override
   String toString() {
-    return 'Worker{nationalId: $nationalId, firstName: $firstName, lastName: $lastName}';
+    return 'Worker{nationalId: $nationalId, firstName: $firstName, lastName: $lastName, photo: $photo}';
   }
 
   factory Worker.fromJson(Map<String, dynamic> json) => _$WorkerFromJson(json);

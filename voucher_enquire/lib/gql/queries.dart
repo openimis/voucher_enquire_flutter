@@ -6,6 +6,9 @@ query workerEnquire ($nationalId: String!){
         chfId
         otherNames
         lastName
+        photo {
+          photo
+        }
       }
     }
   }
